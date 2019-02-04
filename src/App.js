@@ -7,8 +7,10 @@ class App extends Component {
 
   state = {
     currentWindow: "Homepage",
-    currentMood: "Test",
-    moodContent: []
+    currentMood: "No Current Mood",
+    moodContent: [],
+    moodImages : [],
+    moodNews: []
   }
 
   getContent = () => {
@@ -19,6 +21,67 @@ class App extends Component {
     })
   }
 
+  getHappyImages = () => {
+    fetch('http://localhost:3000/api/v1/happyimgs')
+    .then(res => res.json())
+    .then(happyImages => {
+      this.setState({
+        moodImages: happyImages
+      })
+    })
+  }
+
+  getSadImages = () => {
+    fetch('http://localhost:3000/api/v1/sadimgs')
+    .then(res => res.json())
+    .then(sadImages => {
+      this.setState({
+        moodImages: sadImages
+      })
+    })
+  }
+
+  getContentImages = () => {
+    fetch(`http://localhost:3000/api/v1/contentimgs`)
+    .then(res => res.json())
+    .then(contentImages => {
+      this.setState({
+        moodImages: contentImages
+      })
+    })
+  }
+
+  getHappyNews = () => {
+    fetch(`http://localhost:3000/api/v1/happynews`)
+    .then(res => res.json())
+    .then(happyNews => {
+      this.setState({
+        moodNews: happyNews
+      })
+    })
+  }
+
+  getSadNews = () => {
+    fetch(`http://localhost:3000/api/v1/sadnews`)
+    .then(res => res.json())
+    .then(sadNews => {
+      this.setState({
+        moodNews: sadNews
+      })
+    })
+  }
+
+  getContentNews = () => {
+    fetch(`http://localhost:3000/api/v1/contentnews`)
+    .then(res => res.json())
+    .then(contentNews => {
+      this.setState({
+        moodNews: contentNews
+      })
+    })
+  }
+
+
   componentDidMount() {
     this.getContent();
   }
@@ -26,7 +89,6 @@ class App extends Component {
   getRandomArrayItem = (min, max) => {
     let randomNumber = Math.random() * (max - min) + min
     let randomNumberRounded =  Math.floor(randomNumber)
-    console.log(randomNumberRounded)
     return randomNumberRounded;
   }
 
@@ -36,6 +98,8 @@ class App extends Component {
       currentMood: event.target.value
     })
   }
+
+  // f. getRandomImgUrl is designed to pull from Reddit api; Refactor to fit current fetch models or create different function to tie into prop within MoodContainer
 
   getRandomImgUrl = () => {
     let children = this.state.moodContent.data && this.state.moodContent.data.children;
@@ -48,23 +112,22 @@ class App extends Component {
 
 
   render() {
-    console.log(this.getRandomImgUrl());
+    console.log(this.state.currentMood)
     return (
       <div className="App">
       <Navbar
       randomNumber = {this.getRandomArrayItem}
       />
-        <h1>MoodPerker</h1>
+        <h1><u>MoodPerker</u></h1>
         <br />
-        <h3>How are you?</h3>
         <select value={this.state.currentMood} onChange={event => this.changeHandler(event)}>
         <option value="Happy" name="Happy"> Happy </option>
         <option value="Sad" name="Sad"> Sad </option>
         <option value="Content" name="Content"> Content </option>
         </select>
-        <MoodContainer
-        moodContent = {this.getRandomImgUrl}
-        />
+        <br />
+        <br />
+        <h3>How are you?</h3>
         <MoodContainer
         moodContent = {this.getRandomImgUrl}
         />

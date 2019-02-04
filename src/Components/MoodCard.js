@@ -2,8 +2,7 @@ import React from 'react'
 import 'App.css'
 
 
-const moodCard = () => {
-
+const moodCard = props => {
 }
 
 

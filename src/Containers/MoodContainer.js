@@ -16,7 +16,6 @@ class MoodContainer extends Component {
 
   render() {
     let index = () => {this.getRandomArrayItem(1, 25)};
-    console.log(index)
     return (
       <div>
         <img src={this.props.moodContent()} alt="" />
