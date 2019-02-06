@@ -2,11 +2,10 @@ import React from 'react'
 import '../App.css'
 
 const MoodNewsCard = props => {
-  console.log(props)
   return (
     <div>
-    <a href={props.story.news_src}><p>{props.story.title}</p></a>
-    <p>{props.story.description}</p>
+      <h3><a href={props.story.news_src} target="_blank" rel="noopener noreferrer"><u>{props.story.title}</u></a></h3>
+      <p>{props.story.description}</p>
     </div>
   )
 }

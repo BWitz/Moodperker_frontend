@@ -12,7 +12,6 @@ class MoodImageContainer extends Component {
 
   getRandomImage = () => {
     let randomImageIndex = this.getRandomNumber(0, 9);
-    console.log(this.props.images[randomImageIndex])
     return this.props.images[randomImageIndex];
   }
 
@@ -21,16 +20,20 @@ class MoodImageContainer extends Component {
       return null
     } else {
       return (
+        <div className="MoodImageContainer">
         <MoodImageCard image = {this.getRandomImage()}/>
+        <br />
+        <br />
+        <br />
+        <MoodImageCard image = {this.getRandomImage()} />
+        </div>
       )
     }
   }
 
 render() {
-  console.log(this.props.images.length)
   return (
     <div>
-    <p>I am the moodImageContainer!</p>
     {this.moodCardManager()}
     </div>
     )

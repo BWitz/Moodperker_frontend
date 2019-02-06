@@ -4,7 +4,7 @@ class Navbar extends Component {
   render() {
     return (
       <nav>
-      <button onClick={() => this.props.randomNumber(1, 100)}>Home</button>
+      <button>Home</button>
       <button>Signup</button>
       <button>Login</button>
       </nav>

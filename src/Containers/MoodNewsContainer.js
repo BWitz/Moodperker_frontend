@@ -12,7 +12,6 @@ class MoodNewsContainer extends Component {
 
   getRandomArticle = () => {
     let randomImageIndex = this.getRandomNumber(0, 2);
-    console.log(this.props.news[randomImageIndex])
     return this.props.news[randomImageIndex];
   }
 
@@ -21,15 +20,20 @@ class MoodNewsContainer extends Component {
       return null
     } else {
       return (
+        <div>
         <MoodNewsCard story = {this.getRandomArticle()}/>
+        <br />
+        <br />
+        <br />
+        <MoodNewsCard story = {this.getRandomArticle()}/>
+        </div>
       )
     }
   }
 
 render() {
   return (
-    <div>
-    <p>I am the moodNewsContainer!</p>
+    <div className="MoodNewsContainer">
     {this.moodCardManager()}
     </div>
   )

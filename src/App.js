@@ -1,17 +1,30 @@
 import React, { Component } from 'react';
 import './App.css';
-import Navbar from './Components/Navbar'
 import MoodImageContainer from './Containers/MoodImageContainer'
 import MoodNewsContainer from './Containers/MoodNewsContainer'
 
 class App extends Component {
 
   state = {
-    currentWindow: "Homepage",
     currentMood: "",
-    moodContent: [],
     moodImages : [],
     moodNews: []
+  }
+
+  happyBackground = {
+    display: "background-color: #FFD850"
+  }
+
+  sadBackground = {
+    display: "background-color: #90BAFF"
+  }
+
+  contentBackground = {
+    display: "background-color: #6EFF97"
+  }
+
+  defaultBackground = {
+    display: "background-color: white"
   }
 
   componentDidMount() {
@@ -21,8 +34,6 @@ class App extends Component {
 
   componentDidUpdate() {
     console.log('update!')
-    // console.log(this.state.moodImages)
-    // console.log(this.state.moodNews)
   }
 
   getMoodBasedImages = () => {
@@ -56,16 +67,12 @@ class App extends Component {
         break
       default:
         console.log('Please select a mood for related news!')
+        this.setState({
+          moodImages: [],
+          moodNews: []
+        })
     }
   }
-
-  /* getContent = () => {
-    fetch(`https://www.reddit.com/r/wholesomegifs/.json`)
-    .then(res => res.json())
-    .then(data => {
-      this.setState({moodContent: data})
-    })
-  } */
 
   getHappyImages = () => {
     fetch('http://localhost:3000/api/v1/happyimgs')
@@ -144,17 +151,6 @@ class App extends Component {
     });
   }
 
-  // f. getRandomImgUrl is designed to pull from Reddit api; Refactor to fit current fetch models or create different function to tie into prop within MoodContainer
-
-  getRandomImgUrl = () => {
-    let children = this.state.moodContent.data && this.state.moodContent.data.children;
-    if (children) {
-      let randomNumber = this.getRandomArrayItem(1, 25);
-      console.log(children[randomNumber].data.url)
-      return children[randomNumber].data.url;
-    }
-  }
-
   getRandomImage = () => {
     let images = this.state.moodImages;
     if (images.length > 0) {
@@ -169,24 +165,25 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      <Navbar
-      randomNumber = {this.getRandomArrayItem}
-      />
-        <h1><u>MoodPerker</u></h1>
+      <div className="MoodSelect">
+        <h1 className="title"><u>MoodPerker</u></h1>
         <br />
+        <h3 className="secondaryTitle">How are you?</h3>
         <select value={this.state.currentMood} onChange={event => this.changeHandler(event)}>
-        <option value=""></option>
+        <option value="">I feel..</option>
         <option value="Happy" name="Happy"> Happy </option>
         <option value="Sad" name="Sad"> Sad </option>
         <option value="Content" name="Content"> Content </option>
         </select>
+        </div>
         <br />
         <br />
-        <h3>How are you?</h3>
         <MoodImageContainer
-        images = {this.state.moodImages}/>
+        images = {this.state.moodImages}
+        mood = {this.state.currentMood}/>
         <MoodNewsContainer
-        news = {this.state.moodNews}/>
+        news = {this.state.moodNews}
+        mood = {this.state.currentMood}/>
       </div>
     );
   }
