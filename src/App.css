@@ -2,6 +2,21 @@
   text-align: center;
 }
 
+.happyMood {
+  text-align: center;
+  background-color: #FFD850
+}
+
+.sadMood {
+  text-align: center;
+  background-color: #90BAFF
+}
+
+.contentMood {
+  text-align: center;
+  background-color: #6EFF97
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

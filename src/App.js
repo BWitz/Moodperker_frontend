@@ -11,22 +11,6 @@ class App extends Component {
     moodNews: []
   }
 
-  happyBackground = {
-    display: "background-color: #FFD850"
-  }
-
-  sadBackground = {
-    display: "background-color: #90BAFF"
-  }
-
-  contentBackground = {
-    display: "background-color: #6EFF97"
-  }
-
-  defaultBackground = {
-    display: "background-color: white"
-  }
-
   componentDidMount() {
     this.getMoodBasedImages();
     this.getMoodBasedNews();
@@ -164,7 +148,8 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div>
+      <div>
       <div className="MoodSelect">
         <h1 className="title"><u>MoodPerker</u></h1>
         <br />
@@ -177,13 +162,13 @@ class App extends Component {
         </select>
         </div>
         <br />
-        <br />
         <MoodImageContainer
         images = {this.state.moodImages}
         mood = {this.state.currentMood}/>
         <MoodNewsContainer
         news = {this.state.moodNews}
         mood = {this.state.currentMood}/>
+      </div>
       </div>
     );
   }

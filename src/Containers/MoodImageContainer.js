@@ -33,7 +33,7 @@ class MoodImageContainer extends Component {
 
 render() {
   return (
-    <div>
+    <div className={this.props.currentMood === "Happy" ? "happyMood" : this.props.currentMood === "Sad" ? "sadMood" : this.props.currentMood === "Content" ? "contentMood" : "App"}>
     {this.moodCardManager()}
     </div>
     )
