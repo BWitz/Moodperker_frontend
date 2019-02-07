@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import './App.css';
+import { Route, Switch, Link, withRouter } from 'react-router-dom'
+import HappyMoodPage from './MoodPages/HappyMoodPage'
+import SadMoodPage from './MoodPages/SadMoodPage'
+import ContentMoodPage from './MoodPages/ContentMoodPage'
 import MoodImageContainer from './Containers/MoodImageContainer'
 import MoodNewsContainer from './Containers/MoodNewsContainer'
+import './App.css';
 
 class App extends Component {
 
@@ -87,7 +90,6 @@ class App extends Component {
         moodImages: contentImages
       })
     })
-
   }
 
   getHappyNews = () => {
@@ -158,7 +160,14 @@ class App extends Component {
         return <Link to={"/Content"}> <button>Go!</button> </Link>;
 
       default:
-        return null;
+        console.alert("Please select a mood!");
+    }
+  }
+
+  colorHandler = () => {
+    switch(this.state.currentMood) {
+      case 'Happy':
+        document.querySelector('body').style.backgroundColor = "#FFD850"
     }
   }
 
@@ -166,35 +175,48 @@ class App extends Component {
 
   render() {
     return (
+
       <div>
-      <div className="App">
-      <div className="MoodSelect">
-        <h1 className="title"><u>MoodPerker</u></h1>
-        <br />
-        <h3 className="secondaryTitle">How are you?</h3>
-        <select value={this.state.currentMood} onChange={event => this.changeHandler(event)}>
-        <option value="">I feel..</option>
-        <option value="Happy" name="Happy"> Happy </option>
-        <option value="Sad" name="Sad"> Sad </option>
-        <option value="Content" name="Content"> Content </option>
-        </select>
-        <br />
-        <br />
-        <div>
-        {this.state.currentMood === "" ? null : this.redirectHandler()}
+      <Switch>
+      <Route path="/Happy"
+      render= {RouterProps => {
+        return (
+          <HappyMoodPage
+          currentMood={this.state.currentMood}/>
+        )
+      }}
+      />
+      <Route path="/Sad" component={SadMoodPage}/>
+      <Route path="/Content" component={ContentMoodPage}/>
+      <Route path="/Home" component={App}/>
+      </Switch>
+
+        <div className="App">
+
+          <div className="MoodSelect">
+          <h1 className="title"><u>MoodPerker</u></h1>
+          <br />
+          <h3 className="secondaryTitle">How are you?</h3>
+          <select value={this.state.currentMood} onChange={event => this.changeHandler(event)}>
+          <option value="">I feel..</option>
+          <option value="Happy" name="Happy"> Happy </option>
+          <option value="Sad" name="Sad"> Sad </option>
+          <option value="Content" name="Content"> Content </option>
+          </select>
+          <br />
+          <br />
+
+
+          <div className="redirectHandler">
+          {this.state.currentMood === "" ? null : this.redirectHandler()}
+          </div>
         </div>
-        </div>
-        <br />
-        <MoodImageContainer
-        images = {this.state.moodImages}
-        mood = {this.state.currentMood}/>
-        <MoodNewsContainer
-        news = {this.state.moodNews}
-        mood = {this.state.currentMood}/>
       </div>
+
       </div>
     );
   }
 }
 
-export default App;
+
+export default withRouter(App);

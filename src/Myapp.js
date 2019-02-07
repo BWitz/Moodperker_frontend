@@ -10,10 +10,10 @@ class MyApp extends Component {
     return (
       <div>
       <Switch>
-      <Route path="/" component={App}/>
-      <Route path="/Happy" component={HappyMoodPage}/>
+      <Route path="/Happy" component={HappyMoodPage }/>
       <Route path="/Sad" component={SadMoodPage}/>
       <Route path="/Content" component={ContentMoodPage}/>
+      <Route path="/" component={App}/>
       </Switch>
       </div>
     );
