@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './App.css';
 import MoodImageContainer from './Containers/MoodImageContainer'
 import MoodNewsContainer from './Containers/MoodNewsContainer'
@@ -145,11 +146,28 @@ class App extends Component {
     }
   }
 
+  redirectHandler = () => {
+    switch(this.state.currentMood) {
+      case 'Happy':
+        return <Link to={"/Happy"}> <button>Go!</button> </Link>;
+
+      case 'Sad':
+        return <Link to={"/Sad"}> <button>Go!</button> </Link>;
+
+      case 'Content':
+        return <Link to={"/Content"}> <button>Go!</button> </Link>;
+
+      default:
+        return null;
+    }
+  }
+
+
 
   render() {
     return (
       <div>
-      <div>
+      <div className="App">
       <div className="MoodSelect">
         <h1 className="title"><u>MoodPerker</u></h1>
         <br />
@@ -160,6 +178,11 @@ class App extends Component {
         <option value="Sad" name="Sad"> Sad </option>
         <option value="Content" name="Content"> Content </option>
         </select>
+        <br />
+        <br />
+        <div>
+        {this.state.currentMood === "" ? null : this.redirectHandler()}
+        </div>
         </div>
         <br />
         <MoodImageContainer
