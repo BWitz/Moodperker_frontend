@@ -3,8 +3,7 @@ import { Route, Switch, Link, withRouter } from 'react-router-dom'
 import HappyMoodPage from './MoodPages/HappyMoodPage'
 import SadMoodPage from './MoodPages/SadMoodPage'
 import ContentMoodPage from './MoodPages/ContentMoodPage'
-import MoodImageContainer from './Containers/MoodImageContainer'
-import MoodNewsContainer from './Containers/MoodNewsContainer'
+import BoredMoodPage from './MoodPages/BoredMoodPage'
 import './App.css';
 
 class App extends Component {
@@ -16,14 +15,16 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.getMoodBasedImages();
-    this.getMoodBasedNews();
+    this.colorHandler()
   }
 
-  componentDidUpdate() {
-    console.log('update!')
+  colorHandler = () => {
+    switch(this.state.currentMood) {
+        default: document.querySelector('body').style.backgroundColor = "#ffffff";
+    }
   }
 
+  // Necessary
   getMoodBasedImages = () => {
     switch(this.state.currentMood) {
 
@@ -41,9 +42,9 @@ class App extends Component {
     }
   }
 
+  // Necessary
   getMoodBasedNews = () => {
     switch(this.state.currentMood) {
-
       case 'Happy' :
         this.getHappyNews();
         break
@@ -72,6 +73,7 @@ class App extends Component {
     })
   }
 
+
   getSadImages = () => {
     fetch('http://localhost:3000/api/v1/sadimgs')
     .then(res => res.json())
@@ -81,6 +83,7 @@ class App extends Component {
       })
     })
   }
+
 
   getContentImages = () => {
     fetch(`http://localhost:3000/api/v1/contentimgs`)
@@ -92,6 +95,7 @@ class App extends Component {
     })
   }
 
+
   getHappyNews = () => {
     fetch(`http://localhost:3000/api/v1/happynews`)
     .then(res => res.json())
@@ -101,6 +105,7 @@ class App extends Component {
       })
     )
   }
+
 
   getSadNews = () => {
     fetch(`http://localhost:3000/api/v1/sadnews`)
@@ -112,6 +117,7 @@ class App extends Component {
     })
   }
 
+
   getContentNews = () => {
     fetch(`http://localhost:3000/api/v1/contentnews`)
     .then(res => res.json())
@@ -122,21 +128,21 @@ class App extends Component {
     })
   }
 
+
   getRandomArrayItem = (min, max) => {
     let randomNumber = Math.random() * (max - min) + min
     let randomNumberRounded =  Math.floor(randomNumber)
     return randomNumberRounded;
   }
 
+
   changeHandler = event => {
     event.preventDefault();
     this.setState({
       currentMood: event.target.value
-    }, ()=>{
-      this.getMoodBasedImages();
-      this.getMoodBasedNews();
     });
   }
+
 
   getRandomImage = () => {
     let images = this.state.moodImages;
@@ -148,29 +154,22 @@ class App extends Component {
     }
   }
 
+
   redirectHandler = () => {
     switch(this.state.currentMood) {
       case 'Happy':
-        return <Link to={"/Happy"}> <button>Go!</button> </Link>;
+        return <Link to={"/Happy"}> <button className='go-button'>Do the thing!</button> </Link>;
 
       case 'Sad':
-        return <Link to={"/Sad"}> <button>Go!</button> </Link>;
+        return <Link to={"/Sad"}> <button className='go-button'>Do the thing!</button> </Link>;
 
-      case 'Content':
-        return <Link to={"/Content"}> <button>Go!</button> </Link>;
+      case 'Bored':
+        return <Link to={"/Bored"}> <button className = 'go-button'>Do the thing!</button> </Link>;
 
       default:
-        console.alert("Please select a mood!");
+        alert("Redirect handler does not have this selected mood!");
     }
   }
-
-  colorHandler = () => {
-    switch(this.state.currentMood) {
-      case 'Happy':
-        document.querySelector('body').style.backgroundColor = "#FFD850"
-    }
-  }
-
 
 
   render() {
@@ -187,32 +186,27 @@ class App extends Component {
       }}
       />
       <Route path="/Sad" component={SadMoodPage}/>
-      <Route path="/Content" component={ContentMoodPage}/>
+      <Route path="/Content" component={ContentMoodPage} />
+      <Route path="/Bored" component={BoredMoodPage}/>
       <Route path="/Home" component={App}/>
       </Switch>
 
         <div className="App">
-
           <div className="MoodSelect">
           <h1 className="title"><u>MoodPerker</u></h1>
           <br />
           <h3 className="secondaryTitle">How are you?</h3>
-          <select value={this.state.currentMood} onChange={event => this.changeHandler(event)}>
+          <select className = 'select-thingy' value={this.state.currentMood} onChange={event => this.changeHandler(event)}>
           <option value="">I feel..</option>
           <option value="Happy" name="Happy"> Happy </option>
           <option value="Sad" name="Sad"> Sad </option>
-          <option value="Content" name="Content"> Content </option>
+          <option value="Bored" name="Bored"> Bored </option>
           </select>
           <br />
           <br />
-
-
-          <div className="redirectHandler">
           {this.state.currentMood === "" ? null : this.redirectHandler()}
-          </div>
         </div>
       </div>
-
       </div>
     );
   }

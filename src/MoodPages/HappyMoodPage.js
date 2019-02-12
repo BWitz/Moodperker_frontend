@@ -1,19 +1,23 @@
 import React, { Component } from 'react';
 import '../App.css';
+import Navbar from '../Components/Navbar'
 import MoodImageContainer from '../Containers/MoodImageContainer'
 import MoodNewsContainer from '../Containers/MoodNewsContainer'
+import MoodQuoteContainer from '../Containers/MoodQuoteContainer'
 
 export default class HappyMoodPage extends Component {
 
   state = {
     currentMood : 'Happy',
     moodImages : [],
-    moodNews: []
+    moodNews: [],
+    moodQuotes: [],
   }
 
   componentDidMount() {
     this.getHappyImages();
     this.getHappyNews();
+    this.getHappyQuotes();
     this.colorHandler();
   }
 
@@ -37,10 +41,21 @@ export default class HappyMoodPage extends Component {
     )
   }
 
+  getHappyQuotes = () => {
+    fetch(`http://localhost:3000/api/v1/happyquotes`)
+    .then(res => res.json())
+    .then(happyQuotes => {
+      this.setState({
+        moodQuotes: happyQuotes
+      })
+    })
+  }
+
   colorHandler = () => {
     switch(this.state.currentMood) {
       case 'Happy':
-        document.querySelector('body').style.backgroundColor = "#FFD850"
+        document.querySelector('body').style.backgroundColor = "#FFD850";
+        break;
         default:
         console.log('no color!')
     }
@@ -49,7 +64,12 @@ export default class HappyMoodPage extends Component {
   render() {
     return (
       <div className="happyMood">
-        <h1 className="App">I'm the happy mood page!</h1>
+        <Navbar
+         mood={this.state.currentMood}
+        />
+        <MoodQuoteContainer
+        quotes = {this.state.moodQuotes}
+        />
         <MoodImageContainer
         images = {this.state.moodImages}
         />

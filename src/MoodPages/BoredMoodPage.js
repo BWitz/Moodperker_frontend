@@ -2,28 +2,32 @@ import React, { Component } from 'react';
 import '../App.css';
 import MoodImageContainer from '../Containers/MoodImageContainer'
 import MoodNewsContainer from '../Containers/MoodNewsContainer'
+import MoodQuoteContainer from '../Containers/MoodQuoteContainer'
+import Navbar from '../Components/Navbar'
 
-export default class ContentMoodPage extends Component {
+export default class BoredMoodPage extends Component {
 
   state = {
-    currentMood: "Content",
+    currentMood: "Bored",
     moodImages : [],
-    moodNews: []
+    moodNews: [],
+    moodQuotes: []
   }
 
   componentDidMount() {
-    this.getContentImages();
+    this.getBoredImages();
     this.getContentNews();
+    this.getBoredQuotes();
     this.colorHandler();
   }
 
 
-  getContentImages = () => {
-    fetch(`http://localhost:3000/api/v1/contentimgs`)
+  getBoredImages = () => {
+    fetch(`http://localhost:3000/api/v1/boredimgs`)
     .then(res => res.json())
-    .then(contentImages => {
+    .then(boredImages => {
       this.setState({
-        moodImages: contentImages
+        moodImages: boredImages
       })
     })
   }
@@ -38,9 +42,19 @@ export default class ContentMoodPage extends Component {
     })
   }
 
+  getBoredQuotes = () => {
+    fetch(`http://localhost:3000/api/v1/boredquotes`)
+    .then(res => res.json())
+    .then(boredQuotes => {
+      this.setState({
+        moodQuotes: boredQuotes
+      })
+    })
+  }
+
   colorHandler = () => {
     switch(this.state.currentMood) {
-      case 'Content':
+      case 'Bored':
         document.querySelector('body').style.backgroundColor = "#6EFF97"
         break;
         default:
@@ -51,6 +65,12 @@ export default class ContentMoodPage extends Component {
   render() {
     return (
       <div>
+        <Navbar
+        mood = {this.state.currentMood}
+        />
+        <MoodQuoteContainer
+        quotes = {this.state.moodQuotes}
+        />
         <MoodImageContainer
         images = {this.state.moodImages}
         />

@@ -7,12 +7,17 @@ class MoodImageContainer extends Component {
   getRandomNumber = (min, max) => {
     let randomNumber = Math.random() * (max - min) + min;
     let randomNumberRounded =  Math.floor(randomNumber);
-    return randomNumberRounded
+    return randomNumberRounded;
   }
 
   getRandomImage = () => {
-    let randomImageIndex = this.getRandomNumber(0, 9);
+    let randomImageIndex = this.getRandomNumber(1, 5);
     return this.props.images[randomImageIndex];
+  }
+
+  getSecondRandomImage = () => {
+    let randomImageIndex = this.getRandomNumber(6, 10);
+    return this.props.images[randomImageIndex]
   }
 
   moodCardManager = () => {
@@ -25,7 +30,7 @@ class MoodImageContainer extends Component {
         <br />
         <br />
         <br />
-        <MoodImageCard image = {this.getRandomImage()} />
+        <MoodImageCard image = {this.getSecondRandomImage()} />
         </div>
       )
     }
