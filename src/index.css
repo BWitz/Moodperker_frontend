@@ -86,6 +86,16 @@ a:hover, a:active { text-decoration: none; color:red} */
   font-size: 15px
 }
 
+.quoteForm {
+  position: absolute;
+  margin-left: 45%;
+  margin-top: 10%;
+}
+
+.submitButton {
+  width: 100%;
+}
+
 .nav-button:hover {
   color: black
 }

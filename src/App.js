@@ -4,6 +4,9 @@ import HappyMoodPage from './MoodPages/HappyMoodPage'
 import SadMoodPage from './MoodPages/SadMoodPage'
 import ContentMoodPage from './MoodPages/ContentMoodPage'
 import BoredMoodPage from './MoodPages/BoredMoodPage'
+import HappyQuoteForm from './QuoteForms/HappyQuoteForm'
+import SadQuoteForm from './QuoteForms/SadQuoteForm'
+import BoredQuoteForm from './QuoteForms/BoredQuoteForm'
 import './App.css';
 
 class App extends Component {
@@ -177,6 +180,9 @@ class App extends Component {
 
       <div>
       <Switch>
+      <Route path="/HappyQuoteForm" component={HappyQuoteForm}/>
+      <Route path="/SadQuoteForm" component={SadQuoteForm} />
+      <Route path="/BoredQuoteForm" component={BoredQuoteForm}/>
       <Route path="/Happy"
       render= {RouterProps => {
         return (
