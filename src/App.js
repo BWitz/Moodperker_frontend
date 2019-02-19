@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
-import { Route, Switch, Link, withRouter } from 'react-router-dom'
-import HappyMoodPage from './MoodPages/HappyMoodPage'
-import SadMoodPage from './MoodPages/SadMoodPage'
-import ContentMoodPage from './MoodPages/ContentMoodPage'
-import BoredMoodPage from './MoodPages/BoredMoodPage'
-import HappyQuoteForm from './QuoteForms/HappyQuoteForm'
-import SadQuoteForm from './QuoteForms/SadQuoteForm'
-import BoredQuoteForm from './QuoteForms/BoredQuoteForm'
+import { Route, Switch, Link, withRouter } from 'react-router-dom';
+
+import HappyMoodPage from './MoodPages/HappyMoodPage';
+import SadMoodPage from './MoodPages/SadMoodPage';
+import ContentMoodPage from './MoodPages/ContentMoodPage';
+import BoredMoodPage from './MoodPages/BoredMoodPage';
+
+import HappyQuoteForm from './QuoteForms/HappyQuoteForm';
+import SadQuoteForm from './QuoteForms/SadQuoteForm';
+import BoredQuoteForm from './QuoteForms/BoredQuoteForm';
+
+import HappyNewsForm from './NewsForms/HappyNewsForm';
+import SadNewsForm from './NewsForms/SadNewsForm';
+import BoredNewsForm from './NewsForms/BoredNewsForm';
+
 import './App.css';
 
 class App extends Component {
@@ -15,16 +22,6 @@ class App extends Component {
     currentMood: "",
     moodImages : [],
     moodNews: []
-  }
-
-  componentDidMount() {
-    this.colorHandler()
-  }
-
-  colorHandler = () => {
-    switch(this.state.currentMood) {
-        default: document.querySelector('body').style.backgroundColor = "#ffffff";
-    }
   }
 
   // Necessary
@@ -174,6 +171,18 @@ class App extends Component {
     }
   }
 
+  titleHandler = () => {
+    switch(this.state.currentMood) {
+      case 'Happy':
+        return "title happyTitle"
+      case 'Sad':
+        return "title sadTitle"
+      case 'Bored':
+        return "title boredTitle"
+      default:
+        return "title"
+    }
+  }
 
   render() {
     return (
@@ -183,14 +192,10 @@ class App extends Component {
       <Route path="/HappyQuoteForm" component={HappyQuoteForm}/>
       <Route path="/SadQuoteForm" component={SadQuoteForm} />
       <Route path="/BoredQuoteForm" component={BoredQuoteForm}/>
-      <Route path="/Happy"
-      render= {RouterProps => {
-        return (
-          <HappyMoodPage
-          currentMood={this.state.currentMood}/>
-        )
-      }}
-      />
+      <Route path="/HappyNewsForm" component={HappyNewsForm}/>
+      <Route path="/SadNewsForm" component={SadNewsForm} />
+      <Route path="/BoredNewsForm" component={BoredNewsForm}/>
+      <Route path="/Happy" component={HappyMoodPage}/>
       <Route path="/Sad" component={SadMoodPage}/>
       <Route path="/Content" component={ContentMoodPage} />
       <Route path="/Bored" component={BoredMoodPage}/>
@@ -199,7 +204,7 @@ class App extends Component {
 
         <div className="App">
           <div className="MoodSelect">
-          <h1 className="title"><u>MoodPerker</u></h1>
+          <h1 className={this.titleHandler()}><u>MoodPerker</u></h1>
           <br />
           <h3 className="secondaryTitle">How are you?</h3>
           <select className = 'select-thingy' value={this.state.currentMood} onChange={event => this.changeHandler(event)}>

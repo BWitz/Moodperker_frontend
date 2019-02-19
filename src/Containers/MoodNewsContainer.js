@@ -11,8 +11,23 @@ class MoodNewsContainer extends Component {
   }
 
   getRandomArticle = () => {
-    let randomImageIndex = this.getRandomNumber(0, 2);
-    return this.props.news[randomImageIndex];
+    if (this.props.news.length === 0) {
+      return null
+    } else {
+    let lowerArticleBracket = Math.floor(this.props.news.length / 2)
+    let randomArticleIndex = this.getRandomNumber(0, lowerArticleBracket);
+    return this.props.news[randomArticleIndex];
+    }
+  }
+
+  getSecondRandomArticle = () => {
+    if (this.props.news.length === 0) {
+      return null
+    } else {
+    let higherArticleBracket = Math.ceil(this.props.news.length / 2)
+    let randomArticleIndex = this.getRandomNumber(higherArticleBracket, this.props.news.length);
+    return this.props.news[randomArticleIndex];
+    }
   }
 
   moodCardManager = () => {
@@ -25,7 +40,7 @@ class MoodNewsContainer extends Component {
         <br />
         <br />
         <br />
-        <MoodNewsCard story = {this.getRandomArticle()}/>
+        <MoodNewsCard story = {this.getSecondRandomArticle()}/>
         </div>
       )
     }

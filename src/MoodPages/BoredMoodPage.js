@@ -16,7 +16,7 @@ export default class BoredMoodPage extends Component {
 
   componentDidMount() {
     this.getBoredImages();
-    this.getContentNews();
+    this.getBoredNews();
     this.getBoredQuotes();
     this.colorHandler();
   }
@@ -32,12 +32,12 @@ export default class BoredMoodPage extends Component {
     })
   }
 
-  getContentNews = () => {
-    fetch(`http://localhost:3000/api/v1/contentnews`)
+  getBoredNews = () => {
+    fetch(`http://localhost:3000/api/v1/borednews`)
     .then(res => res.json())
-    .then(contentNews => {
+    .then(boredNews => {
       this.setState({
-        moodNews: contentNews
+        moodNews: boredNews
       })
     })
   }

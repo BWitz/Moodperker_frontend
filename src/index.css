@@ -24,6 +24,18 @@ a:hover, a:active { text-decoration: none; color:red} */
   color: grey;
 }
 
+.title.happyTitle {
+  color: #B26300;
+}
+
+.title.sadTitle {
+  color: #9666FF;
+}
+
+.title.boredTitle {
+  color: #00B20C;
+}
+
 .MoodImageContainer {
   position: absolute;
   margin-top: 100px;
@@ -92,6 +104,16 @@ a:hover, a:active { text-decoration: none; color:red} */
   margin-top: 10%;
 }
 
+.newsForm {
+  position: absolute;
+  margin-left: 45%;
+  margin-top: 10%;
+}
+
+.inputField {
+  width: 100%;
+}
+
 .submitButton {
   width: 100%;
 }
@@ -104,7 +126,7 @@ a:hover, a:active { text-decoration: none; color:red} */
   float: right;
   margin-right: 40px
 }
-.nav-button.login{
+.nav-button.create-news-button{
   float: right;
   margin-right: 20px
 }
@@ -132,7 +154,7 @@ a:hover, a:active { text-decoration: none; color:red} */
   border: none;
   border-radius: 5px;
   font-size: 15px;
-  font-weight: 500
+  font-weight: 500;
 }
 
 .go-button:hover {

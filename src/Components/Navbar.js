@@ -6,7 +6,7 @@ import BoredQuoteForm from '../QuoteForms/BoredQuoteForm'
 
 class Navbar extends Component {
 
-redirectHandler = () => {
+quoteRedirectHandler = () => {
   switch(this.props.mood) {
     case 'Happy' :
       return <Link to={"/HappyQuoteForm"}>
@@ -21,10 +21,28 @@ redirectHandler = () => {
       <button className = 'nav-button create-quote-button'>Add a quote</button>
       </Link>
     default:
-      console.log('Please select a mood for related images!')
+      console.log('quoteRedirectHandler not functioning properly!')
   }
 }
 
+newsRedirectHandler = () => {
+  switch(this.props.mood) {
+    case 'Happy' :
+      return <Link to={"/HappyNewsForm"}>
+      <button className = 'nav-button create-news-button'>Add News</button>
+      </Link>
+    case 'Sad' :
+      return <Link to={"/SadNewsForm"}>
+      <button className = 'nav-button create-news-button'>Add News</button>
+      </Link>
+    case 'Bored':
+      return <Link to={"/BoredNewsForm"}>
+      <button className = 'nav-button create-news-button'>Add News</button>
+      </Link>
+    default:
+      console.log('newsRedirectHandler not functioning properly!')
+  }
+}
 
 
 
@@ -39,8 +57,8 @@ redirectHandler = () => {
       <nav className="Navbar">
       <br />
       <Link to={"/"}> <button className = 'nav-button home'>Home</button> </Link>
-      {this.redirectHandler()}
-      <button className = 'nav-button login'>Login</button>
+      {this.newsRedirectHandler()}
+      {this.quoteRedirectHandler()}
       </nav>
       </div>
     )
