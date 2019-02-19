@@ -158,13 +158,13 @@ class App extends Component {
   redirectHandler = () => {
     switch(this.state.currentMood) {
       case 'Happy':
-        return <Link to={"/Happy"}> <button className='go-button'>Do the thing!</button> </Link>;
+        return <Link to={"/Happy"}> <button className='go-button'>Render!</button> </Link>;
 
       case 'Sad':
-        return <Link to={"/Sad"}> <button className='go-button'>Do the thing!</button> </Link>;
+        return <Link to={"/Sad"}> <button className='go-button'>Render!</button> </Link>;
 
       case 'Bored':
-        return <Link to={"/Bored"}> <button className = 'go-button'>Do the thing!</button> </Link>;
+        return <Link to={"/Bored"}> <button className = 'go-button'>Render!</button> </Link>;
 
       default:
         alert("Redirect handler does not have this selected mood!");
