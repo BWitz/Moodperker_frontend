@@ -27,7 +27,7 @@ export default class BoredNewsForm extends Component {
     }
 
     else {
-      fetch(`http://localhost:3000/api/v1/borednews`, {
+      fetch(`https://moodperker-rails-api.herokuapp.com/api/v1/borednews`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

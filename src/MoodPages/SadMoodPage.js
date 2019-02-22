@@ -22,7 +22,7 @@ export default class SadMoodPage extends Component {
   }
 
   getSadImages = () => {
-    fetch('http://localhost:3000/api/v1/sadimgs')
+    fetch('https://moodperker-rails-api.herokuapp.com/api/v1/sadimgs')
     .then(res => res.json())
     .then(sadImages => {
       this.setState({
@@ -32,7 +32,7 @@ export default class SadMoodPage extends Component {
   }
 
   getSadNews = () => {
-    fetch(`http://localhost:3000/api/v1/sadnews`)
+    fetch(`https://moodperker-rails-api.herokuapp.com/api/v1/sadnews`)
     .then(res => res.json())
     .then(sadNews => {
       this.setState({
@@ -42,7 +42,7 @@ export default class SadMoodPage extends Component {
   }
 
   getSadQuotes = () => {
-    fetch(`http://localhost:3000/api/v1/sadquotes`)
+    fetch(`https://moodperker-rails-api.herokuapp.com/api/v1/sadquotes`)
     .then(res => res.json())
     .then(sadQuotes => {
       this.setState({

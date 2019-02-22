@@ -64,7 +64,7 @@ class App extends Component {
   }
 
   getHappyImages = () => {
-    fetch('http://localhost:3000/api/v1/happyimgs')
+    fetch('https://moodperker-rails-api.herokuapp.com/api/v1/happyimgs')
     .then(res => res.json())
     .then(happyImages => {
       this.setState({
@@ -75,7 +75,7 @@ class App extends Component {
 
 
   getSadImages = () => {
-    fetch('http://localhost:3000/api/v1/sadimgs')
+    fetch('https://moodperker-rails-api.herokuapp.com/api/v1/sadimgs')
     .then(res => res.json())
     .then(sadImages => {
       this.setState({
@@ -86,7 +86,7 @@ class App extends Component {
 
 
   getContentImages = () => {
-    fetch(`http://localhost:3000/api/v1/contentimgs`)
+    fetch(`https://moodperker-rails-api.herokuapp.com/api/v1/contentimgs`)
     .then(res => res.json())
     .then(contentImages => {
       this.setState({
@@ -97,7 +97,7 @@ class App extends Component {
 
 
   getHappyNews = () => {
-    fetch(`http://localhost:3000/api/v1/happynews`)
+    fetch(`https://moodperker-rails-api.herokuapp.com/api/v1/happynews`)
     .then(res => res.json())
     .then(happyNews =>
       this.setState({
@@ -108,7 +108,7 @@ class App extends Component {
 
 
   getSadNews = () => {
-    fetch(`http://localhost:3000/api/v1/sadnews`)
+    fetch(`https://moodperker-rails-api.herokuapp.com/api/v1/sadnews`)
     .then(res => res.json())
     .then(sadNews => {
       this.setState({
@@ -119,7 +119,7 @@ class App extends Component {
 
 
   getContentNews = () => {
-    fetch(`http://localhost:3000/api/v1/contentnews`)
+    fetch(`https://moodperker-rails-api.herokuapp.com/api/v1/contentnews`)
     .then(res => res.json())
     .then(contentNews => {
       this.setState({

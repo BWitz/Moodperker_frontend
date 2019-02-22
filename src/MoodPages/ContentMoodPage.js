@@ -19,7 +19,7 @@ export default class ContentMoodPage extends Component {
 
 
   getContentImages = () => {
-    fetch(`http://localhost:3000/api/v1/contentimgs`)
+    fetch(`https://moodperker-rails-api.herokuapp.com/api/v1/contentimgs`)
     .then(res => res.json())
     .then(contentImages => {
       this.setState({
@@ -29,7 +29,7 @@ export default class ContentMoodPage extends Component {
   }
 
   getContentNews = () => {
-    fetch(`http://localhost:3000/api/v1/contentnews`)
+    fetch(`https://moodperker-rails-api.herokuapp.com/api/v1/contentnews`)
     .then(res => res.json())
     .then(contentNews => {
       this.setState({

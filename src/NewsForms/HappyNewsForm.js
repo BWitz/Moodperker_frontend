@@ -27,7 +27,7 @@ export default class HappyNewsForm extends Component {
     }
 
     else {
-      fetch(`http://localhost:3000/api/v1/happynews`, {
+      fetch(`https://moodperker-rails-api.herokuapp.com/api/v1/happynews`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

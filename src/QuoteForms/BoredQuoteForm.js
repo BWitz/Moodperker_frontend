@@ -23,7 +23,7 @@ export default class BoredQuoteForm extends Component {
       alert('Authors name caps out at 20 characters, Quotes cap out at 160 characters!')
     }
     else {
-      fetch(`http://localhost:3000/api/v1/boredquotes`, {
+      fetch(`https://moodperker-rails-api.herokuapp.com/api/v1/boredquotes`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

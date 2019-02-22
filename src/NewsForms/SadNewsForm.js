@@ -27,7 +27,7 @@ export default class SadNewsForm extends Component {
     }
 
     else {
-      fetch(`http://localhost:3000/api/v1/sadnews`, {
+      fetch(`https://moodperker-rails-api.herokuapp.com/api/v1/sadnews`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

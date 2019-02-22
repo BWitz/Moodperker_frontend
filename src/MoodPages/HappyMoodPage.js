@@ -22,7 +22,7 @@ export default class HappyMoodPage extends Component {
   }
 
   getHappyImages = () => {
-    fetch('http://localhost:3000/api/v1/happyimgs')
+    fetch('https://moodperker-rails-api.herokuapp.com/api/v1/happyimgs')
     .then(res => res.json())
     .then(happyImages => {
       this.setState({
@@ -32,7 +32,7 @@ export default class HappyMoodPage extends Component {
   }
 
   getHappyNews = () => {
-    fetch(`http://localhost:3000/api/v1/happynews`)
+    fetch(`https://moodperker-rails-api.herokuapp.com/api/v1/happynews`)
     .then(res => res.json())
     .then(happyNews =>
       this.setState({
@@ -42,7 +42,7 @@ export default class HappyMoodPage extends Component {
   }
 
   getHappyQuotes = () => {
-    fetch(`http://localhost:3000/api/v1/happyquotes`)
+    fetch(`https://moodperker-rails-api.herokuapp.com/api/v1/happyquotes`)
     .then(res => res.json())
     .then(happyQuotes => {
       this.setState({

@@ -23,7 +23,7 @@ export default class SadQuoteForm extends Component {
       alert('Authors name caps out at 20 characters, Quotes cap out at 160 characters!')
     }
     else {
-      fetch(`http://localhost:3000/api/v1/sadquotes`, {
+      fetch(`https://moodperker-rails-api.herokuapp.com/api/v1/sadquotes`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

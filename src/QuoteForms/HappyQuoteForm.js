@@ -21,7 +21,7 @@ export default class HappyQuoteForm extends Component {
     } else if (this.state.authorInput.length > 20 || this.state.quoteInput.length > 160){
       alert('Authors name caps out at 20 characters, Quotes cap out at 160 characters!')
     } else {
-      fetch(`http://localhost:3000/api/v1/happyquotes`, {
+      fetch(`https://moodperker-rails-api.herokuapp.com/api/v1/happyquotes`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
