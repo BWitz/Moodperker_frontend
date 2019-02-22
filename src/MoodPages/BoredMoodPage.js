@@ -23,7 +23,7 @@ export default class BoredMoodPage extends Component {
 
 
   getBoredImages = () => {
-    fetch(`http://localhost:3000/api/v1/boredimgs`)
+    fetch(`https://moodperker-rails-api.herokuapp.com/api/v1/boredimgs`)
     .then(res => res.json())
     .then(boredImages => {
       this.setState({
@@ -33,7 +33,7 @@ export default class BoredMoodPage extends Component {
   }
 
   getBoredNews = () => {
-    fetch(`http://localhost:3000/api/v1/borednews`)
+    fetch(`https://moodperker-rails-api.herokuapp.com/api/v1/borednews`)
     .then(res => res.json())
     .then(boredNews => {
       this.setState({
@@ -43,7 +43,7 @@ export default class BoredMoodPage extends Component {
   }
 
   getBoredQuotes = () => {
-    fetch(`http://localhost:3000/api/v1/boredquotes`)
+    fetch(`https://moodperker-rails-api.herokuapp.com/api/v1/boredquotes`)
     .then(res => res.json())
     .then(boredQuotes => {
       this.setState({
